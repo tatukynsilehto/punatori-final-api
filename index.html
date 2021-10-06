@@ -1,0 +1,874 @@
+<!doctype html>
+<html>
+  <head>
+    <title>punatori-openapi</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>punatori-openapi</h1>
+    <div class="app-desc">Punatori-API, TVT19SPO Building Cloud Integration course work</div>
+    <div class="app-desc">Creators: Tatu Kynsilehto & Aleksi Leinonen</a></div>
+    <div class="app-desc">Version: 1.0</div>
+    
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#apikeytestGet"><code><span class="http-method">get</span> /apikeytest</code></a></li>
+  <li><a href="#deleteItemsId"><code><span class="http-method">delete</span> /items/{id}</code></a></li>
+  <li><a href="#getItems"><code><span class="http-method">get</span> /items</code></a></li>
+  <li><a href="#getItemsSearch"><code><span class="http-method">get</span> /items/search</code></a></li>
+  <li><a href="#getLogin"><code><span class="http-method">get</span> /login</code></a></li>
+  <li><a href="#getUser"><code><span class="http-method">get</span> /user</code></a></li>
+  <li><a href="#postItems"><code><span class="http-method">post</span> /items</code></a></li>
+  <li><a href="#postRegister"><code><span class="http-method">post</span> /register</code></a></li>
+  <li><a href="#putItemsId"><code><span class="http-method">put</span> /items/{id}</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="apikeytestGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /apikeytest</code></pre></div>
+    <div class="method-summary">Test if ApiKey is valid (<span class="nickname">apikeytestGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteItemsId"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /items/{id}</code></pre></div>
+    <div class="method-summary">Delete a single item (<span class="nickname">deleteItemsId</span>)</div>
+    <div class="method-notes">Delete a single item with unique item-id, ApiKey required</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique item ID </div>    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: deleted-response</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;user deleted&quot;}</code></pre>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: not-found-example</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;Not found&quot;}</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getItems"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /items</code></pre></div>
+    <div class="method-summary">Get a list of all the items (<span class="nickname">getItems</span>)</div>
+    <div class="method-notes">Get all the items</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Items">Items</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "images" : {
+    "image3" : "image3",
+    "image4" : "image4",
+    "image1" : "image1",
+    "image2" : "image2"
+  },
+  "contactInfo" : "carsalesman@jari.com",
+  "price" : 300000,
+  "description" : "Very good car",
+  "postDate" : "postDate",
+  "location" : "Oulu",
+  "id" : "55eaec5b-d638-48ad-a679-2ccd3ee8f1e0",
+  "title" : "Lamborghini Aventador",
+  "category" : "Cars",
+  "deliverType" : true
+}, {
+  "images" : {
+    "image3" : "image3",
+    "image4" : "image4",
+    "image1" : "image1",
+    "image2" : "image2"
+  },
+  "contactInfo" : "carsalesman@jari.com",
+  "price" : 300000,
+  "description" : "Very good car",
+  "postDate" : "postDate",
+  "location" : "Oulu",
+  "id" : "55eaec5b-d638-48ad-a679-2ccd3ee8f1e0",
+  "title" : "Lamborghini Aventador",
+  "category" : "Cars",
+  "deliverType" : true
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: get-items-response</div>
+    <pre class="example"><code>[{&quot;result&quot;:[{&quot;id&quot;:&quot;Testid&quot;,&quot;title&quot;:&quot;Testtitle&quot;,&quot;description&quot;:&quot;Testdescription&quot;,&quot;category&quot;:&quot;Testcategory&quot;,&quot;location&quot;:&quot;Testlocation&quot;,&quot;images&quot;:{},&quot;price&quot;:100,&quot;postDate&quot;:&quot;2021-10-01&quot;,&quot;deliverType&quot;:true,&quot;contactInfo&quot;:&quot;test@jari.fi&quot;},{&quot;id&quot;:&quot;55eaec5b-d638-48ad-a679-2ccd3ee8f1e0&quot;,&quot;title&quot;:&quot;Lamborghini Aventador&quot;,&quot;description&quot;:&quot;Very good car&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;images&quot;:{&quot;image1&quot;:&quot;/path/test1.jpg&quot;,&quot;image2&quot;:&quot;/path/test2.jpg&quot;,&quot;image3&quot;:&quot;/path/test3.jpg&quot;,&quot;image4&quot;:&quot;/path/test4.jpg&quot;},&quot;price&quot;:300000,&quot;postDate&quot;:&quot;string&quot;,&quot;deliverType&quot;:true,&quot;contactInfo&quot;:&quot;carsalesman@jari.com&quot;}]}]</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getItemsSearch"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /items/search</code></pre></div>
+    <div class="method-summary">Search through items (<span class="nickname">getItemsSearch</span>)</div>
+    <div class="method-notes">Search a single item from the item list with query parameters (case sensitive)</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">?category&#x3D;Electronics (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Searching items from category Electronics </div>      <div class="param">?title&#x3D;Test (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Searching an item with the title Test </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Items">Items</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "images" : {
+    "image3" : "image3",
+    "image4" : "image4",
+    "image1" : "image1",
+    "image2" : "image2"
+  },
+  "contactInfo" : "carsalesman@jari.com",
+  "price" : 300000,
+  "description" : "Very good car",
+  "postDate" : "postDate",
+  "location" : "Oulu",
+  "id" : "55eaec5b-d638-48ad-a679-2ccd3ee8f1e0",
+  "title" : "Lamborghini Aventador",
+  "category" : "Cars",
+  "deliverType" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Items">Items</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: item-search-response</div>
+    <pre class="example"><code>{&quot;id&quot;:&quot;55eaec5b-d638-48ad-a679-2ccd3ee8f1e0&quot;,&quot;title&quot;:&quot;Lamborghini Aventador&quot;,&quot;description&quot;:&quot;Very good car&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;images&quot;:{&quot;image1&quot;:&quot;string&quot;,&quot;image2&quot;:&quot;string&quot;,&quot;image3&quot;:&quot;string&quot;,&quot;image4&quot;:&quot;string&quot;},&quot;price&quot;:300000,&quot;postDate&quot;:&quot;string&quot;,&quot;deliverType&quot;:true,&quot;contactInfo&quot;:&quot;carsalesman@jari.com&quot;}</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getLogin"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /login</code></pre></div>
+    <div class="method-summary">Login to Punatori (<span class="nickname">getLogin</span>)</div>
+    <div class="method-notes">Login to Punatori</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "apikey" : "apikey"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    
+        <a href="#inline_response_200">inline_response_200</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: login-example-response</div>
+    <pre class="example"><code>{&quot;apikey&quot;:&quot;128af42b-1fb0-43d9-a22f-75ee7c62b842&quot;}</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUser"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user</code></pre></div>
+    <div class="method-summary">Get a list of all users (<span class="nickname">getUser</span>)</div>
+    <div class="method-notes">Returns all users</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#User">User</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "password" : "$2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta",
+  "apikey" : "128af42b-1fb0-43d9-a22f-75ee7c62b842",
+  "id" : "55eaec5b-d638-48ad-a679-2ccd3ee8f1e0",
+  "email" : "",
+  "username" : "username"
+}, {
+  "password" : "$2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta",
+  "apikey" : "128af42b-1fb0-43d9-a22f-75ee7c62b842",
+  "id" : "55eaec5b-d638-48ad-a679-2ccd3ee8f1e0",
+  "email" : "",
+  "username" : "username"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: get-users-response</div>
+    <pre class="example"><code>[{&quot;users&quot;:[{&quot;id&quot;:&quot;55eaec5b-d638-48ad-a679-2ccd3ee8f1e0&quot;,&quot;username&quot;:&quot;string&quot;,&quot;email&quot;:&quot;string&quot;,&quot;password&quot;:&quot;$2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta&quot;,&quot;apikey&quot;:&quot;128af42b-1fb0-43d9-a22f-75ee7c62b842&quot;},{&quot;id&quot;:&quot;55eaec5b-d638-48ad-a679-2ccd3ee8f1e0&quot;,&quot;username&quot;:&quot;string&quot;,&quot;email&quot;:&quot;string&quot;,&quot;password&quot;:&quot;$2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta&quot;,&quot;apikey&quot;:&quot;128af42b-1fb0-43d9-a22f-75ee7c62b842&quot;}]}]</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postItems"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /items</code></pre></div>
+    <div class="method-summary">Add a new item for sale (<span class="nickname">postItems</span>)</div>
+    <div class="method-notes">Post a new item, ApiKey required</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Items">Items</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+            <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;value&quot; : {
+    &quot;id&quot; : &quot;Testid&quot;,
+    &quot;title&quot; : &quot;Testtitle&quot;,
+    &quot;description&quot; : &quot;Testdescription&quot;,
+    &quot;category&quot; : &quot;Testcategory&quot;,
+    &quot;location&quot; : &quot;Testlocation&quot;,
+    &quot;images&quot; : {
+      &quot;image1&quot; : &quot;jari/test1&quot;,
+      &quot;image2&quot; : &quot;jari/test2&quot;,
+      &quot;image3&quot; : &quot;jari/test3&quot;,
+      &quot;image4&quot; : &quot;jari/test4&quot;
+    },
+    &quot;price&quot; : 150,
+    &quot;postDate&quot; : &quot;2021-10-01&quot;,
+    &quot;deliverType&quot; : true,
+    &quot;contactInfo&quot; : &quot;test@test.fi&quot;
+  }
+}</code></span></div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: created-response-example</div>
+    <pre class="example"><code>[{&quot;Created&quot;:&quot;Item successfully created&quot;}]</code></pre>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: incorrect-apikey-example</div>
+    <pre class="example"><code>[{&quot;BadRequest&quot;:&quot;Incorrect Api Key&quot;}]</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: unauthorized-response-example</div>
+    <pre class="example"><code>[{&quot;Unauthorized&quot;:&quot;Missing Api Key&quot;}]</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postRegister"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /register</code></pre></div>
+    <div class="method-summary">Register a new user (<span class="nickname">postRegister</span>)</div>
+    <div class="method-notes">Register a new user</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#register_body">register_body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Username, email and password required upon registeration </div>
+            <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;value&quot; : {
+    &quot;username&quot; : &quot;yourusername&quot;,
+    &quot;email&quot; : &quot;jari@email.fi&quot;,
+    &quot;password&quot; : &quot;yourpassword&quot;
+  }
+}</code></span></div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_201">inline_response_201</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "Created" : "Created"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created: &amp;quot;User created&amp;quot;
+        <a href="#inline_response_201">inline_response_201</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: user-created-example</div>
+    <pre class="example"><code>{&quot;Created&quot;:&quot;User successfully created&quot;}</code></pre>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#inline_response_400">inline_response_400</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: missing-email-example</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;Missing email&quot;}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: missing-password-example</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;Missing password&quot;}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: missing-username-example</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;Missing username&quot;}</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putItemsId"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /items/{id}</code></pre></div>
+    <div class="method-summary">Modify a single item (<span class="nickname">putItemsId</span>)</div>
+    <div class="method-notes">Modify a single item listing, ApiKey required</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique item ID </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#items_id_body">items_id_body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; You can choose what to modify (title, description, category etc) </div>
+            <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;value&quot; : {
+    &quot;title&quot; : &quot;yourNewTitle&quot;
+  }
+}</code></span></div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Object">Object</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Object">Object</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: not-found-response</div>
+    <pre class="example"><code>{&quot;NotFound&quot;:&quot;Item with this ID does not exist&quot;}</code></pre>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Items"><code>Items</code></a></li>
+    <li><a href="#Items_images"><code>Items_images</code></a></li>
+    <li><a href="#User"><code>User</code> - User</a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#inline_response_201"><code>inline_response_201</code></a></li>
+    <li><a href="#inline_response_400"><code>inline_response_400</code></a></li>
+    <li><a href="#items_id_body"><code>items_id_body</code></a></li>
+    <li><a href="#register_body"><code>register_body</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Items"><code>Items</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Item ID generated by UUIDv4 </div>
+          <div class="param-desc"><span class="param-type">example: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0</span></div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Item title </div>
+          <div class="param-desc"><span class="param-type">example: Lamborghini Aventador</span></div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Item description </div>
+          <div class="param-desc"><span class="param-type">example: Very good car</span></div>
+<div class="param">category </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Item category </div>
+          <div class="param-desc"><span class="param-type">example: Cars</span></div>
+<div class="param">location </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Location of item/seller </div>
+          <div class="param-desc"><span class="param-type">example: Oulu</span></div>
+<div class="param">images </div><div class="param-desc"><span class="param-type"><a href="#Items_images">Items_images</a></span>  </div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 300000</span></div>
+<div class="param">postDate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deliverType </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">contactInfo </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: carsalesman@jari.com</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Items_images"><code>Items_images</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">image1 </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">image2 </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">image3 </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">image4 </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code> - User</a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> User id generated by UUIDv4 </div>
+          <div class="param-desc"><span class="param-type">example: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0</span></div>
+<div class="param">username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username selected by the user during registeration </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Hashed password by using bcrypt format: password</div>
+          <div class="param-desc"><span class="param-type">example: $2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta</span></div>
+<div class="param">apikey (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Automatically generated ApiKey </div>
+          <div class="param-desc"><span class="param-type">example: 128af42b-1fb0-43d9-a22f-75ee7c62b842</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">apikey </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_201"><code>inline_response_201</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Created </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_400"><code>inline_response_400</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="items_id_body"><code>items_id_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">&quot;title&quot; (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="register_body"><code>register_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: password</div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
