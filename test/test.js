@@ -273,7 +273,7 @@ describe('Mocha Testing implementation', function() {
                         category: "Electronics",
                         location: "Tampere",
                         price: 100.00,
-                        postDate: "2020-11-13",
+                        postDate: "2021-11-13",
                         deliverType: true,
                         contactInfo: "test@test.com"
     
@@ -300,7 +300,7 @@ describe('Mocha Testing implementation', function() {
                         category: "Electronics",
                         location: "Tampere",
                         price: 100.00,
-                        postDate: "2020-11-13",
+                        postDate: "2021-11-13",
                         deliverType: true,
                         contactInfo: "test@test.com"
     
@@ -327,7 +327,7 @@ describe('Mocha Testing implementation', function() {
                     .field('category','Electronics')
                     .field('location','Oulu')
                     .field('price', 70.00)
-                    .field('postDate','2020-05-05')
+                    .field('postDate','2021-05-05')
                     .field('deliverType',true)
                     .field('contactInfo','test@test.com')
                     .then(response => {
@@ -353,7 +353,7 @@ describe('Mocha Testing implementation', function() {
                     .field('category','Tools')
                     .field('location','Oulu')
                     .field('price', 30.00)
-                    .field('postDate','2020-11-13')
+                    .field('postDate','2021-11-13')
                     .field('deliverType',true)
                     .field('contactInfo','test@test.com')
                     .then(response => {
@@ -380,7 +380,7 @@ describe('Mocha Testing implementation', function() {
                     .field('category','Tools')
                     .field('location','Tampere')
                     .field('price',60.00)
-                    .field('postDate','2020-05-04')
+                    .field('postDate','2021-05-04')
                     .field('deliverType',true)
                     .field('contactInfo','test@test.com')
                     .then(response => {
@@ -408,7 +408,7 @@ describe('Mocha Testing implementation', function() {
                     .field('category','Electronics')
                     .field('location','Helsinki')
                     .field('price',50.00)
-                    .field('postDate','2020-05-05')
+                    .field('postDate','2021-05-05')
                     .field('deliverType',true)
                     .field('contactInfo','test@test.com')
                     .then(response => {
@@ -436,7 +436,7 @@ describe('Mocha Testing implementation', function() {
                         description: "For sale beoplay H8 bluetooth anti-noise headphones.",
                         category: "Electronics",
                         location: "Tampere",
-                        postDate: "2020-11-13",
+                        postDate: "2021-11-13",
                         deliverType: false,
     
                     })
@@ -461,7 +461,7 @@ describe('Mocha Testing implementation', function() {
                         description: "For sale beoplay H8 bluetooth anti-noise headphones.",
                         category: "Electronics",
                         location: "Tampere",
-                        postDate: "2020-11-13",
+                        postDate: "2021-11-13",
                         deliverType: false,
     
                     })
@@ -487,7 +487,7 @@ describe('Mocha Testing implementation', function() {
                     .field('description','For sale beoplay H8 bluetooth anti-noise headphones.')
                     .field('category','Electronics')
                     .field('location','Tampere')
-                    .field('postDate','2020-11-13')
+                    .field('postDate','2021-11-13')
                     .field('deliverType',false)
                     .then(response => {
                     expect(response.status).to.equal(200);
@@ -619,7 +619,7 @@ describe('Mocha Testing implementation', function() {
             describe('SEARCH by date of posting', function() {
                 it('Should respond with an array of items with postDate "2020-10-07"', async function() {
                     await chai.request(apiAddress)
-                        .get('/items/search?postDate=2020-10-07')
+                        .get('/items/search?postDate=2021-10-07')
                         .then(response => {
                             expect(response.status).to.equal(200);
                             expect(response.body).to.be.a('object');
