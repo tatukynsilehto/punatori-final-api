@@ -617,7 +617,7 @@ describe('Mocha Testing implementation', function() {
 
             //5.3: Search items by Date of posting (Electronics)
             describe('SEARCH by date of posting', function() {
-                it('Should respond with an array of items with postDate "2020-10-07"', async function() {
+                it('Should respond with an array of items with postDate "2021-10-07"', async function() {
                     await chai.request(apiAddress)
                         .get('/items/search?postDate=2021-10-07')
                         .then(response => {
@@ -637,7 +637,7 @@ describe('Mocha Testing implementation', function() {
                             expect(response.body.results[0].images).to.be.of.property('image3');
                             expect(response.body.results[0].images).to.be.of.property('image4');
                             expect(response.body.results[0]).to.be.of.property('price');
-                            expect(response.body.results[0]).to.be.of.property('postDate').equal('2020-10-07');;
+                            expect(response.body.results[0]).to.be.of.property('postDate').equal('2021-10-07');;
                             expect(response.body.results[0]).to.be.of.property('deliverType');
                             expect(response.body.results[0]).to.be.of.property('contactInfo');
                     })
