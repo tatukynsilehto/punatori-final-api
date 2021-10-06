@@ -1,0 +1,565 @@
+---
+openapi: 3.0.0
+info:
+  title: punatori-openapi
+  description: Punatori-API, TVT19SPO Building Cloud Integration course work
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /apikeytest:
+    get:
+      tags: []
+      summary: Test if ApiKey is valid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples: {}
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+  /user:
+    get:
+      tags: []
+      summary: Get a list of all users
+      description: Returns all users
+      operationId: get-user
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                get-users-response:
+                  value:
+                  - users:
+                    - id: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+                      username: string
+                      email: string
+                      password: $2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta
+                      apikey: 128af42b-1fb0-43d9-a22f-75ee7c62b842
+                    - id: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+                      username: string
+                      email: string
+                      password: $2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta
+                      apikey: 128af42b-1fb0-43d9-a22f-75ee7c62b842
+  /items:
+    get:
+      tags: []
+      summary: Get a list of all the items
+      description: Get all the items
+      operationId: get-items
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Items'
+              examples:
+                get-items-response:
+                  value:
+                  - result:
+                    - id: Testid
+                      title: Testtitle
+                      description: Testdescription
+                      category: Testcategory
+                      location: Testlocation
+                      images: {}
+                      price: 100
+                      postDate: 2021-10-01
+                      deliverType: true
+                      contactInfo: test@jari.fi
+                    - id: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+                      title: Lamborghini Aventador
+                      description: Very good car
+                      category: Cars
+                      location: Oulu
+                      images:
+                        image1: /path/test1.jpg
+                        image2: /path/test2.jpg
+                        image3: /path/test3.jpg
+                        image4: /path/test4.jpg
+                      price: 300000
+                      postDate: string
+                      deliverType: true
+                      contactInfo: carsalesman@jari.com
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Add a new item for sale
+      description: Post a new item, ApiKey required
+      operationId: post-items
+      parameters:
+      - name: apikey
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+            examples:
+              item-post-example:
+                value:
+                  id: Testid
+                  title: Testtitle
+                  description: Testdescription
+                  category: Testcategory
+                  location: Testlocation
+                  images:
+                    image1: jari/test1
+                    image2: jari/test2
+                    image3: jari/test3
+                    image4: jari/test4
+                  price: 150
+                  postDate: 2021-10-01
+                  deliverType: true
+                  contactInfo: test@test.fi
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                created-response-example:
+                  value:
+                  - Created: Item successfully created
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                incorrect-apikey-example:
+                  value:
+                  - BadRequest: Incorrect Api Key
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                unauthorized-response-example:
+                  value:
+                  - Unauthorized: Missing Api Key
+  /login:
+    get:
+      tags: []
+      summary: Login to Punatori
+      description: Login to Punatori
+      operationId: get-login
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+              examples:
+                login-example-response:
+                  value:
+                    apikey: 128af42b-1fb0-43d9-a22f-75ee7c62b842
+        "401":
+          description: Unauthorized
+      security:
+      - login: []
+  /register:
+    post:
+      summary: Register a new user
+      description: Register a new user
+      operationId: post-register
+      requestBody:
+        description: Username, email and password required upon registeration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/register_body'
+            examples:
+              register-example:
+                value:
+                  username: yourusername
+                  email: jari@email.fi
+                  password: yourpassword
+      responses:
+        "201":
+          description: 'Created: "User created"'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+              examples:
+                user-created-example:
+                  value:
+                    Created: User successfully created
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+              examples:
+                missing-password-example:
+                  value:
+                    status: Missing password
+                missing-username-example:
+                  value:
+                    status: Missing username
+                missing-email-example:
+                  value:
+                    status: Missing email
+  /items/search:
+    get:
+      tags: []
+      summary: Search through items
+      description: Search a single item from the item list with query parameters (case sensitive)
+      operationId: get-items-search
+      parameters:
+      - name: ?category=Electronics
+        in: query
+        description: Searching items from category Electronics
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: ?title=Test
+        in: query
+        description: Searching an item with the title Test
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+              examples:
+                item-search-response:
+                  value:
+                    id: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+                    title: Lamborghini Aventador
+                    description: Very good car
+                    category: Cars
+                    location: Oulu
+                    images:
+                      image1: string
+                      image2: string
+                      image3: string
+                      image4: string
+                    price: 300000
+                    postDate: string
+                    deliverType: true
+                    contactInfo: carsalesman@jari.com
+  /items/{id}:
+    put:
+      summary: Modify a single item
+      description: Modify a single item listing, ApiKey required
+      operationId: put-items-id
+      parameters:
+      - name: id
+        in: path
+        description: Unique item ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: apikey
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: You can choose what to modify (title, description, category etc)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/items_id_body'
+            examples:
+              modify-example:
+                value:
+                  title: yourNewTitle
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples: {}
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                not-found-response:
+                  value:
+                    NotFound: Item with this ID does not exist
+    delete:
+      summary: Delete a single item
+      description: Delete a single item with unique item-id, ApiKey required
+      operationId: delete-items-id
+      parameters:
+      - name: id
+        in: path
+        description: Unique item ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: apikey
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                deleted-response:
+                  value:
+                    status: user deleted
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                not-found-example:
+                  value:
+                    status: Not found
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+          description: User id generated by UUIDv4
+          example: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+        username:
+          type: string
+          description: Username selected by the user during registeration
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          description: Hashed password by using bcrypt
+          format: password
+          example: $2b$06$RSB1neU6yL1i4sxFRv1AOO0o.M6an4asYS3iPglWeoGe.EZlO5Nta
+        apikey:
+          type: string
+          description: Automatically generated ApiKey
+          example: 128af42b-1fb0-43d9-a22f-75ee7c62b842
+      x-examples:
+        User:
+          id: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+          username: Jari Myyrä
+          email: Jari.myyrä@email.com
+          password: $2b$06$2sFvJIiEh/prhBXCbQDeRurvb6blx4yK2N8O4do6zUxiG/cLDABuC
+          apikey: 28003bf1-d64e-4bce-800a-19d76c96ea4e
+    Items:
+      required:
+      - category
+      - contactInfo
+      - deliverType
+      - description
+      - id
+      - images
+      - location
+      - postDate
+      - price
+      - title
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Item ID generated by UUIDv4
+          example: 55eaec5b-d638-48ad-a679-2ccd3ee8f1e0
+        title:
+          minLength: 1
+          type: string
+          description: Item title
+          example: Lamborghini Aventador
+        description:
+          minLength: 1
+          type: string
+          description: Item description
+          example: Very good car
+        category:
+          minLength: 0
+          type: string
+          description: Item category
+          example: Cars
+        location:
+          minLength: 0
+          type: string
+          description: Location of item/seller
+          example: Oulu
+        images:
+          $ref: '#/components/schemas/Items_images'
+        price:
+          type: number
+          example: 300000
+        postDate:
+          minLength: 1
+          type: string
+        deliverType:
+          type: boolean
+        contactInfo:
+          minLength: 1
+          type: string
+          example: carsalesman@jari.com
+      x-examples:
+        item-example:
+          id: Testid
+          title: Testtitle
+          description: Testdescription
+          category: Testcategory
+          location: Testlocation
+          images:
+            image1: jari/test1
+            image2: jari/test2
+            image3: jari/test3
+            image4: jari/test4
+          price: 150
+          postDate: 2021-10-01
+          deliverType: true
+          contactInfo: test@test.fi
+    inline_response_200:
+      required:
+      - apikey
+      type: object
+      properties:
+        apikey:
+          minLength: 1
+          type: string
+      x-examples:
+        example-1:
+          apikey: 128af42b-1fb0-43d9-a22f-75ee7c62b842
+    register_body:
+      required:
+      - email
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          minLength: 1
+          type: string
+        email:
+          minLength: 1
+          type: string
+          format: email
+        password:
+          minLength: 1
+          type: string
+          format: password
+      x-examples:
+        example-1:
+          username: test
+          email: test@jari.fi
+          password: testjari
+    inline_response_201:
+      required:
+      - Created
+      type: object
+      properties:
+        Created:
+          minLength: 1
+          type: string
+      x-examples:
+        example-1:
+          Created: User successfully created
+    inline_response_400:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+      x-examples:
+        example-1:
+          status: Missing password
+    items_id_body:
+      type: object
+      properties:
+        '"title"':
+          type: string
+    Items_images:
+      required:
+      - image1
+      - image2
+      - image3
+      - image4
+      type: object
+      properties:
+        image1:
+          minLength: 1
+          type: string
+        image2:
+          minLength: 1
+          type: string
+        image3:
+          minLength: 1
+          type: string
+        image4:
+          minLength: 1
+          type: string
+  securitySchemes:
+    login:
+      type: http
+      scheme: basic
